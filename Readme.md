@@ -1,30 +1,30 @@
-## Žg‚¢•û
-### 1. MQTT Broker‚ð—§‚Ä‚é
-WebRTC‚ÍÅ‰‚ÉƒXƒgƒŠ[ƒ€‚âŒo˜H‚Ìî•ñ‚ðŒðŠ·‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
-ƒTƒ“ƒvƒ‹‚Å‚ÍMQTT‚ðŽg—p‚µ‚ÄŒðŠ·‚·‚é‚½‚ßAMQTT‚Ìƒuƒ[ƒJ‚ª•K—v‚Å‚·B
-AWS EC2ã‚È‚Ç‚ÉAMosquitto‚È‚Ç‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚­‚¾‚³‚¢B
+ï»¿## ä½¿ã„æ–¹
+### 1. MQTT Brokerã‚’ç«‹ã¦ã‚‹
+WebRTCã¯æœ€åˆã«ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚„çµŒè·¯ã®æƒ…å ±ã‚’äº¤æ›ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+ã‚µãƒ³ãƒ—ãƒ«ã§ã¯MQTTã‚’ä½¿ç”¨ã—ã¦äº¤æ›ã™ã‚‹ãŸã‚ã€MQTTã®ãƒ–ãƒ­ãƒ¼ã‚«ãŒå¿…è¦ã§ã™ã€‚
+AWS EC2ä¸Šãªã©ã«ã€Mosquittoãªã©ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¦ãã ã•ã„ã€‚
 Mosquitto
 https://mosquitto.org/
 
-### 2.MQTT‚Ìƒuƒ[ƒJ‚ÌƒAƒhƒŒƒX‚ðÝ’è‚·‚é
-MqttController.cs‚Ì17s–Ú
+### 2.MQTTã®ãƒ–ãƒ­ãƒ¼ã‚«ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨­å®šã™ã‚‹
+MqttController.csã®17è¡Œç›®
  mqttClient = new MqttClient("192.168.3.4", 1883, false, null);
-‚ÌƒAƒhƒŒƒXAƒ|[ƒg•”•ª‚ð—§‚Ä‚½ƒuƒ[ƒJ‚É“K‡‚·‚é‚æ‚¤‚É‘‚«’¼‚µ‚Ä‚­‚¾‚³‚¢B
+ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€ãƒãƒ¼ãƒˆéƒ¨åˆ†ã‚’ç«‹ã¦ãŸãƒ–ãƒ­ãƒ¼ã‚«ã«é©åˆã™ã‚‹ã‚ˆã†ã«æ›¸ãç›´ã—ã¦ãã ã•ã„ã€‚
 
-### 3.Unity‚ð‹N“®‚·‚é
-Unity‚ÌƒvƒƒWƒFƒNƒg‚ð‚Q‘ä‚ÌPC‚Å‹N“®‚µ‚Ü‚·B
-‹N“®Žž‚ÉMQTT‚ªƒT[ƒo‚ÆŽ©“®“I‚ÉÚ‘±‚µ‚Ü‚·B
+### 3.Unityã‚’èµ·å‹•ã™ã‚‹
+Unityã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’ï¼’å°ã®PCã§èµ·å‹•ã—ã¾ã™ã€‚
+èµ·å‹•æ™‚ã«MQTTãŒã‚µãƒ¼ãƒã¨è‡ªå‹•çš„ã«æŽ¥ç¶šã—ã¾ã™ã€‚
 
-### 4.Call Someoneƒ{ƒ^ƒ“‚ð‰Ÿ‚·
-‚Q‘ä‚ÌPC‚ªMQTT‚ÉÚ‘±‚³‚ê‚½‚±‚Æ‚ðŠm”F‚µA•Ð•û‚ÌCall Someoneƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ü‚·B
-Ú‘±‚ªŠm—§‚³‚ê‚é‚ÆA‰f‘œ’ÊM‚ªŠJŽn‚µ‚Ü‚·B
+### 4.Call Someoneãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+ï¼’å°ã®PCãŒMQTTã«æŽ¥ç¶šã•ã‚ŒãŸã“ã¨ã‚’ç¢ºèªã—ã€ç‰‡æ–¹ã®Call Someoneãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¾ã™ã€‚
+æŽ¥ç¶šãŒç¢ºç«‹ã•ã‚Œã‚‹ã¨ã€æ˜ åƒé€šä¿¡ãŒé–‹å§‹ã—ã¾ã™ã€‚
 
-## ƒlƒCƒeƒBƒuƒvƒ‰ƒOƒCƒ“‚ÌŽg‚¢•û
+## ãƒã‚¤ãƒ†ã‚£ãƒ–ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®ä½¿ã„æ–¹
 ### WebRtcMsgExchanger
-WebRTC‚ÌSDP‚ÆICE‚ÌŒðŠ·‚Ì‚½‚ß‚ÉWebRtcMsgExchanger‚ðŒp³‚µ‚½ƒIƒuƒWƒFƒNƒg‚ª•K—v‚Å‚·B
-description‚Æmessage‚ðƒŠƒ‚[ƒg‚ÌPC‚É‚»‚Ì‚Ü‚Ü‘—M‚µ‚Ä‚­‚¾‚³‚¢B
-ƒ[ƒJƒ‹‘¤PC‚©‚ç‘—M‚·‚×‚«ƒƒbƒZ[ƒW‚ª¶¬‚³‚ê‚½ê‡‚ÍRequiredSendingMessage‚ªŒÄ‚Î‚ê‚Ü‚·B
-ƒŠƒ‚[ƒg‘¤‚©‚çƒƒbƒZ[ƒW‚ðŽóM‚µ‚½ê‡‚ÍAWebRtcCtr_RecievedMessage‚ðŽg‚Á‚ÄWebRTC‚ÌƒRƒ“ƒgƒ[ƒ‰‚Éƒf[ƒ^‚ð“n‚µ‚Ü‚·B
+WebRTCã®SDPã¨ICEã®äº¤æ›ã®ãŸã‚ã«WebRtcMsgExchangerã‚’ç¶™æ‰¿ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå¿…è¦ã§ã™ã€‚
+descriptionã¨messageã‚’ãƒªãƒ¢ãƒ¼ãƒˆã®PCã«ãã®ã¾ã¾é€ä¿¡ã—ã¦ãã ã•ã„ã€‚
+ãƒ­ãƒ¼ã‚«ãƒ«å´PCã‹ã‚‰é€ä¿¡ã™ã¹ããƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒç”Ÿæˆã•ã‚ŒãŸå ´åˆã¯RequiredSendingMessageãŒå‘¼ã°ã‚Œã¾ã™ã€‚
+ãƒªãƒ¢ãƒ¼ãƒˆå´ã‹ã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ä¿¡ã—ãŸå ´åˆã¯ã€WebRtcCtr_RecievedMessageã‚’ä½¿ã£ã¦WebRTCã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ¸¡ã—ã¾ã™ã€‚
 
 ```csharp:WebRtcMsgExchanger.cs
 
@@ -46,21 +46,21 @@ public class WebRtcMsgExchanger: MonoBehaviour
 
 
 ### FrameGate
-Ú‘±‚³‚ê‚½peer‚ÉƒtƒŒ[ƒ€‚ð“ü—ÍAŽó‚¯Žæ‚éê‡‚ÍFrameGate‚ðŽg‚¢‚Ü‚·B
+æŽ¥ç¶šã•ã‚ŒãŸpeerã«ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å…¥åŠ›ã€å—ã‘å–ã‚‹å ´åˆã¯FrameGateã‚’ä½¿ã„ã¾ã™ã€‚
 
-EƒtƒŒ[ƒ€‚Ì“ü—ÍF
+ãƒ»ãƒ•ãƒ¬ãƒ¼ãƒ ã®å…¥åŠ›ï¼š
  FramgeGate_Input(IntPtr image, int width, int height)
-ƒtƒŒ[ƒ€‚ð“ü—Í‚ÍFramgeGate_Input‚ðŽg‚¢‚Ü‚·B
-image‚É‘—M‚µ‚½‚¢‰æ‘œ‚ÌARGB32Œ`Ž®‚Ì2ŽŸŒ³”z—ñA•A‚‚³‚ð‚»‚ê‚¼‚ê“n‚µ‚Ü‚·B
+ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å…¥åŠ›ã¯FramgeGate_Inputã‚’ä½¿ã„ã¾ã™ã€‚
+imageã«é€ä¿¡ã—ãŸã„ç”»åƒã®ARGB32å½¢å¼ã®2æ¬¡å…ƒé…åˆ—ã€å¹…ã€é«˜ã•ã‚’ãã‚Œãžã‚Œæ¸¡ã—ã¾ã™ã€‚
 
-EƒtƒŒ[ƒ€‚ÌŽó‚¯Žæ‚èF
+ãƒ»ãƒ•ãƒ¬ãƒ¼ãƒ ã®å—ã‘å–ã‚Šï¼š
 FramgeGate_onRecieved(IntPtr rgb, int width, int height)
-ƒŠƒ‚[ƒg‚ÌPC‚©‚çƒtƒŒ[ƒ€‚ð“ü—Í‚³‚ê‚é‚ÆAFramgeGate_onRecieved‚ªŒÄ‚Î‚ê‚Ü‚·B
-rgb‚ÍŽóM‚µ‚½‰æ‘œ‚Ì2ŽŸŒ³”z—ñ‚Å‚·B
-LoadRawTextureData‚ðŽg‚Á‚ÄATexture2D‚É”½‰f‚³‚¹‚Ü‚·B
+ãƒªãƒ¢ãƒ¼ãƒˆã®PCã‹ã‚‰ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å…¥åŠ›ã•ã‚Œã‚‹ã¨ã€FramgeGate_onRecievedãŒå‘¼ã°ã‚Œã¾ã™ã€‚
+rgbã¯å—ä¿¡ã—ãŸç”»åƒã®2æ¬¡å…ƒé…åˆ—ã§ã™ã€‚
+LoadRawTextureDataã‚’ä½¿ã£ã¦ã€Texture2Dã«åæ˜ ã•ã›ã¾ã™ã€‚
 
 
-## ‘Î‰žOS
-Œ»’iŠK‚Å‚Íwindows10, x64‚É‚Ì‚Ý‘Î‰ž‚µ‚Ä‚¢‚Ü‚·B
-¡ŒãAiOS‚Í‘Î‰ž‚·‚é—\’è‚Å‚·B
+## å¯¾å¿œOS
+ç¾æ®µéšŽã§ã¯windows10, x64ã«ã®ã¿å¯¾å¿œã—ã¦ã„ã¾ã™ã€‚
+ä»Šå¾Œã€iOSã¯å¯¾å¿œã™ã‚‹äºˆå®šã§ã™ã€‚
 
