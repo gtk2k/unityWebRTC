@@ -739,6 +739,7 @@ GameObject:
   - component: {fileID: 1750392995}
   - component: {fileID: 1750392994}
   - component: {fileID: 1750392996}
+  - component: {fileID: 1750392997}
   m_Layer: 0
   m_Name: WebRtcController
   m_TagString: Untagged
@@ -757,7 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ece30939f68b9e428015b87f4b73c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  webRtcMsgExchanger: {fileID: 1750392996}
+  webRtcMsgExchanger: {fileID: 1750392997}
   RenderingTargets:
   - {fileID: 1343941993}
   - {fileID: 22078833}
@@ -781,11 +782,23 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1750392993}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c20aed149585cec4b87b8f19fdb241a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1750392997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1750392993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe850c297d0fb3498e1f6c93a537186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WebSocketServerURL: ws://localhost:8888
 --- !u!1 &1770405161
 GameObject:
   m_ObjectHideFlags: 0
