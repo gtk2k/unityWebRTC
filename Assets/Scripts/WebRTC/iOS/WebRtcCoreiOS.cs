@@ -40,7 +40,7 @@ public class WebRtcCoreiOS : WebRtcCore
 
 
 
-    public override void RecievedMessage(string description, string message)
+    public override void ReceivedMessage(string description, string message)
     {
     }
 
