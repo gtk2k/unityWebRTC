@@ -1,7 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using uPLibrary.Networking.M2Mqtt;
-using uPLibrary.Networking.M2Mqtt.Messages;
 using WebSocketSharp;
 using System.Threading;
 
