@@ -749,7 +749,9 @@ MonoBehaviour:
   RenderingTargets:
   - {fileID: 1343941993}
   - {fileID: 22078833}
-  SubCameraTexture: {fileID: 8400000, guid: d75866ed033ac4d4bb2936fce478037d, type: 2}
+  StreamSize:
+    width: 640
+    height: 360
 --- !u!4 &1750392995
 Transform:
   m_ObjectHideFlags: 0
@@ -774,7 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe850c297d0fb3498e1f6c93a537186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WebSocketServerURL: ws://localhost:8888
+  WebSocketServerURL: ws://172.16.1.49:8888
 --- !u!1 &1770405161
 GameObject:
   m_ObjectHideFlags: 0
