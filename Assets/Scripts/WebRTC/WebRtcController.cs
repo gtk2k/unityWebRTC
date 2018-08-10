@@ -12,7 +12,7 @@ public class WebRtcController : MonoBehaviour
     public WebRtcMsgExchanger webRtcMsgExchanger;
     public GameObject[] RenderingTargets;
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
-    public Texture2D desktopTexture;
+    private Texture2D desktopTexture;
 #elif UNITY_IPHONE
     public RenderTexture SubCameraTexture;
 #endif
@@ -31,7 +31,7 @@ public class WebRtcController : MonoBehaviour
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
         webRtcCore = new WebRtcCoreWindows(StreamSize.width, StreamSize.height);
 
-        desktopTexture = new Texture2D(StreamSize.width, StreamSize.height);
+        desktopTexture = new Texture2D(StreamSize.width, StreamSize.height, TextureFormat.RGBA32, false);
         Win32Api.BeginDesktopCapture(StreamSize.width, StreamSize.height);
 #elif UNITY_IPHONE
 		webRtcCore = new WebRtcCoreiOS(StreamSize.width, StreamSize.height);
@@ -56,11 +56,12 @@ public class WebRtcController : MonoBehaviour
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
         Win32Api.StretchDesktopCapture();
         desktopTexture.LoadRawTextureData(Win32Api.pPixelData, 4 * StreamSize.width * StreamSize.height);
+        desktopTexture.Apply();
         webRtcCore.FrameGate_Input(desktopTexture);
 #elif UNITY_IPHONE
         webRtcCore.FrameGate_Input(SubCameraTexture);
 #endif
-        webRtcCore.Update();
+        if (webRtcCore != null) webRtcCore.Update();
     }
 
     private void OnDestroy()

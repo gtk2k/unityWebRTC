@@ -70,7 +70,7 @@ namespace SimplePeerConnectionM
         public delegate void ReceivedRGBFrameDelegate(int id,
             IntPtr rgb, uint width, uint height);
         [DllImport(dllPath, CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool FrameGate_RegisterOnReceived(int peerConnectionId,
+        private static extern bool FrameGate_RegisterOnRecieved(int peerConnectionId,
             ReceivedRGBFrameInternalDelegate callback);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -188,7 +188,7 @@ namespace SimplePeerConnectionM
             RegisterOnAudioBusReady(mPeerConnectionId, audioBusReadyDelegate);
 
             FramgeGate_ReceivedDelegate = new ReceivedRGBFrameInternalDelegate(RaiseRGBVideoFrameReady);
-            FrameGate_RegisterOnReceived(mPeerConnectionId, FramgeGate_ReceivedDelegate);
+            FrameGate_RegisterOnRecieved(mPeerConnectionId, FramgeGate_ReceivedDelegate);
 
             localSdpReadytoSendDelegate = new LocalSdpReadytoSendInternalDelegate(
               RaiseLocalSdpReadytoSend);
