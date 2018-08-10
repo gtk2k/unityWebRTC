@@ -16,12 +16,7 @@ public class WebRtcMsgExchanger: MonoBehaviour
         RtcCore.ReceivedMessage(description, message);
     }
 
-
-
     public WebRtcCore RtcCore;
-
-
-
 }
 
 

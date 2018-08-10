@@ -1,26 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using SimplePeerConnectionM;
+﻿using SimplePeerConnectionM;
 using System;
 using System.Runtime.InteropServices;
-using System.Threading;
-
-
-
-
+using UnityEngine;
 
 public class WebRtcCoreWindows : WebRtcCore
 {
-
-
     private PeerConnectionM peer;
     private WebRtcMsgExchanger msgExchanger;
 
     private byte[] receivedTextureBuffer;
     private bool receivedTextureBufferIsUpdated = false;
-
-
 
     IntPtr inputTexturePixlesPtr;
     Color32[] inputTexturePixels;
@@ -28,36 +17,27 @@ public class WebRtcCoreWindows : WebRtcCore
 
     public int UniquePeerId;
 
-    public WebRtcCoreWindows()
+    public WebRtcCoreWindows(int width, int height) : base(width, height)
     {
         Close();
-        List<string> servers = new List<string>();
-        servers.Add("stun: stun.l.google.com:19302");
+        var servers = new string[] {
+            "stun: stun.l.google.com:19302"
+        };
         peer = new PeerConnectionM(servers, "", "");
         UniquePeerId = peer.GetUniqueId();
-
 
         peer.OnLocalSdpReadytoSend += OnLocalSdpReadytoSend;
         peer.OnIceCandiateReadytoSend += OnIceCandiateReadytoSend;
         peer.FramgeGate_onReceived += ReceivedRGBFrame;
         peer.OnFailureMessage += OnFailureMessage;
-
-
-
         peer.AddStream(false);
 
-        ReceivedTexture2D = new Texture2D((int)480, (int)640, TextureFormat.ARGB32, false);
-        
-
-
+        ReceivedTexture2D = new Texture2D(width, height, TextureFormat.ARGB32, false);
 
         receivedTextureBuffer = new byte[4 * ReceivedTexture2D.height * ReceivedTexture2D.width];
 
         Debug.Log("Created WebRTC Core for Windows x64");
     }
-
-
-
 
     public override void Close()
     {
@@ -83,9 +63,7 @@ public class WebRtcCoreWindows : WebRtcCore
             ReceivedTexture2D.Apply();
             receivedTextureBufferIsUpdated = false;
         }
-
     }
-
 
     public override void FrameGate_Input(Texture2D tex)
     {
@@ -94,11 +72,8 @@ public class WebRtcCoreWindows : WebRtcCore
         inputTexturePixels = tex.GetPixels32();
         inputTextureHandle = GCHandle.Alloc(inputTexturePixels, GCHandleType.Pinned);
         inputTexturePixlesPtr = inputTextureHandle.AddrOfPinnedObject();
-        peer.FramgeGate_Input(inputTexturePixlesPtr, (int)tex.width, (int)tex.height);
-
+        peer.FramgeGate_Input(inputTexturePixlesPtr, tex.width, tex.height);
     }
-
-
 
     public void OnLocalSdpReadytoSend(int id, string type, string sdp)
     {
@@ -119,6 +94,7 @@ public class WebRtcCoreWindows : WebRtcCore
         public int Index;
         public string Mid;
     }
+
     public void OnIceCandiateReadytoSend(int id, string candidate, int sdpMlineIndex, string sdpMid)
     {
         MsgExchanger.RequiredSendingMessage("ice", candidate);
@@ -136,13 +112,10 @@ public class WebRtcCoreWindows : WebRtcCore
 
     }
 
-
-
     public void OnFailureMessage(int id, string msg)
     {
         Debug.Log("WebRTC OnFailureMessage called! id=" + id + " msg=" + msg);
     }
-
 
     public override void ReceivedMessage(string description, string message)
     {
@@ -151,26 +124,24 @@ public class WebRtcCoreWindows : WebRtcCore
             peer.SetRemoteDescription("offer", message);
             peer.CreateAnswer();
         }
+
         if (description == "answer")
         {
             peer.SetRemoteDescription("answer", message);
         }
+
         if (description == "ice")
         {
             //            peer.AddIceCandidate(message, 0, "video");
         }
+
         if (description == "iceJson")
         {
             IceJson iceJson = JsonUtility.FromJson(message, typeof(IceJson)) as IceJson;
             peer.AddIceCandidate(iceJson.Ice, iceJson.Index, iceJson.Mid);
             Debug.Log("WebRtcCtr, " + description + ", " + iceJson.Ice + iceJson.Index + iceJson.Mid);
         }
-
     }
-
-
-
-
 }
 
 

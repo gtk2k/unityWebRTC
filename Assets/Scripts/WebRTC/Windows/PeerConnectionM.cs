@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace SimplePeerConnectionM
 {
-
-
     // A managed wrapper up class for the native c style peer connection APIs.
     public class PeerConnectionM
     {
@@ -76,7 +73,6 @@ namespace SimplePeerConnectionM
         private static extern bool FrameGate_RegisterOnReceived(int peerConnectionId,
             ReceivedRGBFrameInternalDelegate callback);
 
-
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void LocalSdpReadytoSendInternalDelegate(string type, string sdp);
         public delegate void LocalSdpReadytoSendDelegate(int id, string type, string sdp);
@@ -100,8 +96,6 @@ namespace SimplePeerConnectionM
         private static extern bool AddIceCandidate(int peerConnectionId, string sdp,
           int sdpMlineindex, string sdpMid);
 
-
-
         //test function
         [DllImport(dllPath, CallingConvention = CallingConvention.Cdecl)]
         private static extern int TestFunction(int num);
@@ -118,13 +112,10 @@ namespace SimplePeerConnectionM
             FramgeGate_Input(mPeerConnectionId, image, width, height);
         }
 
-        //
-
-        public PeerConnectionM(List<string> turnUrls, string username, string credential)
+        public PeerConnectionM(string[] stunTurnUrls, string username, string credential)
         {
-            string[] urls = turnUrls != null ? turnUrls.ToArray() : null;
-            int length = turnUrls != null ? turnUrls.Count : 0;
-            mPeerConnectionId = CreatePeerConnection(urls, length, username, credential);
+            var len = stunTurnUrls == null ? 0 : stunTurnUrls.Length;
+            mPeerConnectionId = CreatePeerConnection(stunTurnUrls, len, username, credential);
             RegisterCallbacks();
         }
 
@@ -240,7 +231,6 @@ namespace SimplePeerConnectionM
             if (FramgeGate_onReceived != null)
                 FramgeGate_onReceived(mPeerConnectionId, rgb, width, height);
         }
-
 
         private void RaiseLocalSdpReadytoSend(string type, string sdp)
         {

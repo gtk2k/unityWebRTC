@@ -7,15 +7,24 @@ public class WebRtcCore
     
     
     public Texture2D ReceivedTexture2D;
-    private Texture2D inputTexture = null;
+    public int width = 480;
+    public int height = 640;
 
+    private Texture2D inputTexture = null;
     private WebRtcMsgExchanger msgExchanger;
+
+    public WebRtcCore(int width, int height)
+    {
+        this.width = width;
+        this.height = height;
+    }
+
     public WebRtcMsgExchanger MsgExchanger
     {
         set
         {
-            this.msgExchanger = value;
-            this.msgExchanger.RtcCore = this;
+            msgExchanger = value;
+            msgExchanger.RtcCore = this;
         }
         get
         {
@@ -41,10 +50,9 @@ public class WebRtcCore
     }
     virtual public void FrameGate_Input(RenderTexture rtex)
     {
-        if(inputTexture == null) inputTexture = new Texture2D((int)480, (int)640, TextureFormat.ARGB32, false);
+        if(inputTexture == null) inputTexture = new Texture2D(width, height, TextureFormat.ARGB32, false);
         RenderTexture currentRT = RenderTexture.active;
         RenderTexture.active = rtex;
-        //Now Abailable to send only 480 x 640
         if (inputTexture.width != rtex.width || inputTexture.height != rtex.height) return;
         inputTexture.ReadPixels(new Rect(0, 0, rtex.width, rtex.height), 0, 0);
         inputTexture.Apply();

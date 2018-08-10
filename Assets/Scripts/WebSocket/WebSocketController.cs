@@ -10,6 +10,11 @@ public class WebSocketController : WebRtcMsgExchanger
     {
         public string type;
         public string message;
+        public SignalingMessage(string type, string message)
+        {
+            this.type = type;
+            this.message = message;
+        }
     }
 
     public string WebSocketServerURL = "ws://localhost:8888";
@@ -37,18 +42,6 @@ public class WebSocketController : WebRtcMsgExchanger
         }, e.Data);
     }
 
-    void SendMessage(string type, string message)
-    {
-        var msg = new SignalingMessage() { type = type, message = message };
-        wsClient.Send(JsonUtility.ToJson(msg));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnDestroy()
     {
         if (wsClient == null) return;
@@ -63,6 +56,6 @@ public class WebSocketController : WebRtcMsgExchanger
             return;
         }
         if (wsClient.ReadyState == WebSocketState.Open)
-            SendMessage(type, message);
+            wsClient.Send(JsonUtility.ToJson(new SignalingMessage(type, message )));
     }
 }

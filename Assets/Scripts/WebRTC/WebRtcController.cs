@@ -9,24 +9,26 @@ using System.Threading;
 public class WebRtcController : MonoBehaviour
 {
     private WebRtcCore webRtcCore;
-
     public WebRtcMsgExchanger webRtcMsgExchanger;
-
-
     public GameObject[] RenderingTargets;
-
-
     public RenderTexture SubCameraTexture;
 
+    [Serializable]
+    public class Size
+    {
+        public int width;
+        public int height;
+    }
+    public Size StreamSize;
 
     // Use this for initialization
     void Start()
     {
-		#if UNITY_STANDALONE_WIN || UNITY_EDITOR
-        webRtcCore = new WebRtcCoreWindows();
-		#elif UNITY_IPHONE
-		webRtcCore = new WebRtcCoreiOS();
-		#endif
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+        webRtcCore = new WebRtcCoreWindows(StreamSize.width, StreamSize.height);
+#elif UNITY_IPHONE
+		webRtcCore = new WebRtcCoreiOS(StreamSize.width, StreamSize.height);
+#endif
 
         webRtcCore.MsgExchanger = webRtcMsgExchanger;
 
@@ -48,21 +50,10 @@ public class WebRtcController : MonoBehaviour
         webRtcCore.Update();
     }
 
-
     private void OnDestroy()
     {
         webRtcCore.Close();
     }
-
-    
-
-
-
-
-
-
-
-
 }
 
 

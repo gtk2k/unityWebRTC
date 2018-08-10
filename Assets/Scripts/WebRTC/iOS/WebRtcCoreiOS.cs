@@ -1,20 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using SimplePeerConnectionM;
-using System;
-using System.Runtime.InteropServices;
-using System.Threading;
-
-
-
-
+﻿using UnityEngine;
 
 public class WebRtcCoreiOS : WebRtcCore
 {
-
-
-    public WebRtcCoreiOS()
+    public WebRtcCoreiOS(int width, int height) : base(width, height)
     {
     }
 
@@ -38,15 +26,9 @@ public class WebRtcCoreiOS : WebRtcCore
     {
     }
 
-
-
     public override void ReceivedMessage(string description, string message)
     {
     }
-
-
-
-
 }
 
 
